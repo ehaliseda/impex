@@ -1,5 +1,18 @@
 /*=============custom css==============*/
 
+.box h6{
+  margin-top: -3px;
+}
+
+#owl-demo .item{
+  margin: 3px;
+}
+#owl-demo .item iframe{
+  display: block;
+  width: 100%;
+  /*height: auto;*/
+}
+
 .ot-title h2,img{
   display: inline-block;
 }
