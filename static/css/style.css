@@ -1,5 +1,9 @@
 /*=============custom css==============*/
 
+.organizat-banner{
+  background-color: #3E6BE1 !important;
+}
+
 .box h6{
   margin-top: -3px;
 }
@@ -58,9 +62,15 @@ a:hover, .active-btn{
 .links h6 a{
   margin-right: 20px;
   color: #5CB85C !important;
+  font-size: 17px;
 }
 
 .links h6{
+  display: inline-block;
+  text-align: center;
+}
+
+.links p{
   display: inline-block;
   text-align: center;
 }
