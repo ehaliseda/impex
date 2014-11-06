@@ -1,3 +1,9 @@
+<?php 
+session_start();
+$errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
+$inputs = isset($_SESSION['inputs']) ? $_SESSION['inputs'] : [];
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,10 +32,19 @@
         <link rel="stylesheet" href="startup/common-files/css/form-label.css">
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         
-        <title>IMPEX</title>
+        <title>OrganizaT-CFDI</title>
     </head>
-
     <body>
+
+<?php if (!empty($errors)) {?>
+
+  <p class="bg-danger" style="padding30px;text-align:center;color:white;"><?php echo implode('<br>', $errors); ?></p>
+
+<?php } elseif(empty($errors)) { ?>
+
+    <p class="bg-success" style="padding30px;text-align:center;color:white;">Tu correo se mando.</p>
+    
+<?php } ?>
 
 <div class="page-wrapper">
 <header class="header-17" id="home">
@@ -42,6 +57,7 @@
                         <img src="startup/common-files/img/header/impex-logo.jpg" width="200" height="auto" alt="">
                     </a>
                 </div>
+
                 <div class="collapse navbar-collapse pull-right">
                     <ul class="nav pull-left">
                         <li><a href="http://solucionesimpex.com/">Soluciones IMPEX</a></li>
@@ -273,25 +289,25 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <form class="form-horizontal" role="form">
+                <form class="form-horizontal" role="form" action="email.php" method="post">
                   <div class="form-group">
                     <div class="col-sm-10">
-                      <input type="subject" class="form-control" id="" placeholder="Tema">
+                      <input name="subject" class="form-control" id="" placeholder="Tema" type="text" <?php echo isset($inputs['subject']) ? ' value="'.$inputs['subject'] .'"' : '' ?> >
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="" placeholder="Correo">
+                      <input name="email" class="form-control" id="" placeholder="Correo" type="text" <?php echo isset($inputs['email']) ? ' value="'.$inputs['email'] .'"' : '' ?>>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-sm-10">
-                      <textarea class="form-control" rows="3" placeholder="Mensaje"></textarea>
+                      <textarea name="msg" class="form-control" rows="3" placeholder="Mensaje" type="text" ><?php echo isset($inputs['msg']) ? $inputs['msg'] : '' ?></textarea>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-sm-10">
-                      <button type="submit" class="btn btn-default pull-right">Send</button>
+                      <button type="submit" name="submit" value="submit" class="btn btn-default pull-right">Send</button>
                     </div>
                   </div>
                 </form>
@@ -378,3 +394,7 @@
             </script>
     </body>
 </html>
+
+<?php 
+session_destroy();
+ ?>
